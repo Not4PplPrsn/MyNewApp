@@ -4,30 +4,72 @@ import { StyleSheet, Text, View, TouchableOpacity, Button, Image, TextInput } fr
 import image from './assets/image.png';
 
 export default function App() {
+
+  const [studentNumber, setStudentNumber] = useState('');
+
+   const[name, setName] = useState('');
+   const [years, setYears] = useState('');
+   const[slots, setSlots] = useState('');
+   const[amount, setAmount] = useState('');
+
+  const handleStudentNumberChange = (text: string) => {
+    setStudentNumber(text);
+  }
+
+  const handleNameChange = (text: string) => {
+    setName(text);
+  }
+  const handleYearsChange = (text: string) => {
+    setYears(text);
+  }
+
   return (
-    <View style={styles.container}>
-      <View style= {styles.ImageCaption}>
-        <View style={styles.imageContainer}>
-          <Image source={image} style={styles.image} />
-        </View>        
+
+
+    <View style = {styles.headerLine}>
+
+        <Text style = {{alignSelf: 'flex-start'}}> Ironline Fitness </Text>
+
+        <Text style = {styles.studentNumberLine}>
+          ST
+          <TextInput placeholder  = "00000000" value={studentNumber} onChangeText={handleStudentNumberChange}  />
+        </Text>
+     
+
+     <View style={styles.container}>
+        <View style= {styles.ImageCaption}>
+          <View style={styles.imageContainer}>
+           <Image source={image} style={styles.image} />
+         </View>        
         
-        <Text style = {styles.nameText} > Sipho Ndlovu </Text>
+         <Text style = {styles.nameText} > Sipho Ndlovu </Text>
 
-      </View>
-      <View  style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', margin: 20, }}>
+       </View>
 
-        <Text style = {styles.agentInformation}>Years Experience: 99</Text>
-        <Text style = {styles.agentInformation}>Consultation fee: R999</Text>
-        <Text style = {styles.agentInformation}>Slots filled: 0</Text>
-      </View>
+        <View  style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', margin: 20, }}>
 
-      <View style = {{alignItems: 'center', margin: 15, backgroundColor: '#7d9497', width: '52%', height: '35%', padding: 10, borderRadius: 5,}}>
-      <TextInput style={styles.texInputs} placeholder="Something Something"
-      placeholderTextColor="#665e5e6c" />
+        <Text>
+          <TextInput style = {styles.agentInformation} value={years} onChangeText={handleYearsChange} keyboardType = 'numeric' />
+        </Text>
+
+        <Text>
+         <TextInput style = {styles.agentInformation} value={amount} onChangeText={(text) => setAmount(text) } keyboardType = 'numeric' />
+        </Text>
+
+        <Text>
+         <TextInput style = {styles.agentInformation} value={slots} onChangeText={(text) => setSlots(text) } keyboardType = 'numeric' />
+        </Text>
+
+        </View>
+        <View> 
+
+        <TextInput placeholder = "please enter your name" value = {slots} onChangeText = {handleNameChange}/>
+
+        </View>
+
+
       
       </View>
-
-
       <StatusBar style="auto" />
     </View>
   );
@@ -39,8 +81,8 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
-    height: 'auto',
-    width: 'auto',
+    height: '60%',
+    width: '90%',
   },
   heading:{fontSize: 20,
     fontWeight: 'bold',
@@ -53,7 +95,9 @@ const styles = StyleSheet.create({
     borderRadius: 100,
     overflow: 'hidden',
     marginBottom: 20,
-    borderWidth: 4,
+    borderWidth: 0,
+    borderColor: 'black',
+    alignSelf: "flex-end"
   },
   image: {
     width: '100%',
@@ -76,28 +120,39 @@ const styles = StyleSheet.create({
     
   },
   agentInformation:{
-    fontSize: 12,
-    fontWeight: "100",
+    fontSize: 24,
+    fontWeight: "bold",
     fontFamily: "Arial",
     borderWidth:0,
-    backgroundColor: "rgba(10, 36, 107, 0.49)",
-    width: '50%',
-    height: 'auto',
     padding: 7, 
     marginRight: 5,
     marginLeft: 9,
     fontStyle: 'italic',
-    color: '#afe297',
+    color: '#000000',
+    width : 100,
+    height: 100
   },
   ImageCaption: {
-    margin: 5,
     flexDirection: 'row',
 
   },
   nameText:{
     fontSize: 24,
     fontWeight: 'bold',
-    color: '#110485'
+    color: '#110485',
+    width: "auto"
+    
+  },
+
+  studentNumberLine: {
+    backgroundColor: '#F5F5F5',
+    alignSelf: 'flex-end',
+    margin : 2.5
+  },
+  headerLine: {
+    padding: 2,
+    backgroundColor: '#F5F5F5',
+    alignItems: 'center'
   }
 
 });
