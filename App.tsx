@@ -28,7 +28,7 @@ export default function App() {
 
     <View style = {styles.headerLine}>
         
-        <Text style = {{alignSelf: 'flex-start'}}> Ironline Fitness </Text>
+        <Text style = {{alignSelf: 'flex-start', marginLeft: 5}}> Ironline Fitness </Text>
 
         <Text style = {styles.studentNumberLine}>
           ST
@@ -48,25 +48,28 @@ export default function App() {
 
         <View  style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', margin: 20, }}>
 
-        <Text style= {styles.lableStyle}>
+        <View style= {styles.lableStyle}>
           <TextInput style = {styles.agentInformation} value={years} onChangeText={handleYearsChange} keyboardType = 'numeric' placeholder = "99" />
-          years experience 
-        </Text>
+          <Text>years experience </Text>
+        </View>
 
-        <Text style= {styles.lableStyle}>
+        <View style= {styles.lableStyle}>
          <TextInput style = {styles.agentInformation} value={amount} onChangeText={(text) => setAmount(text) } keyboardType = 'numeric' placeholder = "R999"/>
+          <Text>price of commission </Text>
           
-        </Text>
+        </View>
 
-        <Text style= {styles.lableStyle}>
-         <TextInput style = {styles.agentInformation} value={slots} onChangeText={(text) => setSlots(text) } keyboardType = 'numeric' placeholder = "0" />
-        </Text>
+        <View style= {styles.lableStyle}>
+         <TextInput style = {styles.agentInformation} value={slots} onChangeText={(text) => setSlots(text) } keyboardType = 'numeric' placeholder = "0" />          
+          <Text>slots available </Text>
+        </View>
 
         </View>
         <View> 
-
-        <TextInput placeholder = "please enter your name" value = {slots} onChangeText = {handleNameChange}/>
-
+        <View style =  {styles.nameField}>
+          <Text style  ={{fontWeight: "800", textTransform: "uppercase", alignSelf: "flex-start", padding: 10}}>Your name</Text>
+          <TextInput style={styles.nameFill} placeholder = "please enter your name" value = {slots} onChangeText = {handleNameChange} placeholderTextColor={'#6d6a6a07'}/>
+        </View>
       </View>
 
       <TouchableOpacity>
@@ -131,12 +134,12 @@ const styles = StyleSheet.create({
     fontFamily: "Arial",
     borderWidth:0,
     padding:5, 
-    marginRight: 5,
-    marginLeft: 4,
+    margin: 5,
     fontStyle: 'italic',
     color: '#000000',
     width : '50%',
-    height: '25%'
+    height: '25%',
+    borderRadius: 44
   },
   ImageCaption: {
     flexDirection: 'row',
@@ -166,7 +169,7 @@ const styles = StyleSheet.create({
   },
   ButtonDesign: {
     backgroundColor: "rgba(58, 58, 57, 0.9)",
-    borderRadius: "20%",
+    borderRadius: 40,
     height: "auto",
     padding: 7,
     margin: 6,
@@ -176,7 +179,40 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     fontSize: 12,
     fontStyle: 'italic',
-    backgroundColor: "rgba(156, 156, 156, 0.79)"
-  }
+    backgroundColor: "rgba(156, 156, 156, 0.79)",
+    padding: 10,
+    width: "20%",
+    height: "150%",
+    borderRadius: 20,
+    
+  },
+    nameField: {
+        flexDirection: "column", 
+        margin: 15, 
+        height: "66%", 
+        width: "96%" , 
+        backgroundColor: "#7b7e8586", 
+        alignItems: "center", 
+        padding:" 5%", 
+        justifyContent: "space-between", 
+        borderRadius: 20, 
+        borderColor: "#504e4e70",
+        borderWidth: 2
+    },
+  nameFill:{
+    fontSize: 24,
+    fontWeight: "bold",
+    fontFamily: "Arial",
+    borderWidth:0,
+    padding:5, 
+    margin: 10,
+    fontStyle: 'italic',
+    color: '#000000',
+    width : '50%',
+    height: '25%',
+    borderWidth: 0.25,
+    borderRadius: 3,
+    
 
+  },
 });
