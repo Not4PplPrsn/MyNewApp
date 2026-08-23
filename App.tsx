@@ -27,7 +27,7 @@ export default function App() {
 
 
     <View style = {styles.headerLine}>
-
+        
         <Text style = {{alignSelf: 'flex-start'}}> Ironline Fitness </Text>
 
         <Text style = {styles.studentNumberLine}>
@@ -44,20 +44,22 @@ export default function App() {
         
          <Text style = {styles.nameText} > Sipho Ndlovu </Text>
 
-       </View>
+      </View>
 
         <View  style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', margin: 20, }}>
 
-        <Text>
-          <TextInput style = {styles.agentInformation} value={years} onChangeText={handleYearsChange} keyboardType = 'numeric' />
+        <Text style= {styles.lableStyle}>
+          <TextInput style = {styles.agentInformation} value={years} onChangeText={handleYearsChange} keyboardType = 'numeric' placeholder = "99" />
+          years experience 
         </Text>
 
-        <Text>
-         <TextInput style = {styles.agentInformation} value={amount} onChangeText={(text) => setAmount(text) } keyboardType = 'numeric' />
+        <Text style= {styles.lableStyle}>
+         <TextInput style = {styles.agentInformation} value={amount} onChangeText={(text) => setAmount(text) } keyboardType = 'numeric' placeholder = "R999"/>
+          
         </Text>
 
-        <Text>
-         <TextInput style = {styles.agentInformation} value={slots} onChangeText={(text) => setSlots(text) } keyboardType = 'numeric' />
+        <Text style= {styles.lableStyle}>
+         <TextInput style = {styles.agentInformation} value={slots} onChangeText={(text) => setSlots(text) } keyboardType = 'numeric' placeholder = "0" />
         </Text>
 
         </View>
@@ -65,10 +67,14 @@ export default function App() {
 
         <TextInput placeholder = "please enter your name" value = {slots} onChangeText = {handleNameChange}/>
 
+      </View>
+
+      <TouchableOpacity>
+        <View style = {styles.ButtonDesign} >
+          <Text style = {{padding: 10, fontWeight: "500", fontSize: 22, color: "#fff", textTransform: "uppercase"}}>Book a session </Text>
         </View>
+      </TouchableOpacity>
 
-
-      
       </View>
       <StatusBar style="auto" />
     </View>
@@ -124,13 +130,13 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     fontFamily: "Arial",
     borderWidth:0,
-    padding: 7, 
+    padding:5, 
     marginRight: 5,
-    marginLeft: 9,
+    marginLeft: 4,
     fontStyle: 'italic',
     color: '#000000',
-    width : 100,
-    height: 100
+    width : '50%',
+    height: '25%'
   },
   ImageCaption: {
     flexDirection: 'row',
@@ -147,12 +153,30 @@ const styles = StyleSheet.create({
   studentNumberLine: {
     backgroundColor: '#F5F5F5',
     alignSelf: 'flex-end',
-    margin : 2.5
+    margin : 5
   },
   headerLine: {
     padding: 2,
     backgroundColor: '#F5F5F5',
-    alignItems: 'center'
+    alignItems: 'center',
+    width: "auto"
+  },
+  bookingButton: {
+    backgroundColor : "#FF6B00"
+  },
+  ButtonDesign: {
+    backgroundColor: "rgba(58, 58, 57, 0.9)",
+    borderRadius: "20%",
+    height: "auto",
+    padding: 7,
+    margin: 6,
+    
+  },
+  lableStyle: {
+    flexDirection: "column",
+    fontSize: 12,
+    fontStyle: 'italic',
+    backgroundColor: "rgba(156, 156, 156, 0.79)"
   }
 
 });
