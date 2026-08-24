@@ -2,6 +2,7 @@ import { StatusBar } from 'expo-status-bar';
 import { useState } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, Button, Image, TextInput } from 'react-native';
 import image from './assets/image.png';
+import AntDesign from '@expo/vector-icons/AntDesign'
 
 export default function App() {
 
@@ -22,13 +23,15 @@ export default function App() {
   const handleYearsChange = (text: string) => {
     setYears(text);
   }
+  const handleMessage = () => {
 
+  }
   return (
 
 
     <View style = {styles.headerLine}>
         
-        <Text style = {{alignSelf: 'flex-start', marginLeft: 5}}> Ironline Fitness </Text>
+        <Text style = {{alignSelf: 'flex-start', margin: 5, color: "#1A1A1A"}}> Ironline Fitness </Text>
 
         <Text style = {styles.studentNumberLine}>
           ST
@@ -46,7 +49,7 @@ export default function App() {
 
       </View>
 
-        <View  style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', margin: 20, }}>
+        <View  style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-around', margin: 20, }}>
 
         <View style= {styles.lableStyle}>
           <TextInput style = {styles.agentInformation} value={years} onChangeText={handleYearsChange} keyboardType = 'numeric' placeholder = "99" />
@@ -68,11 +71,13 @@ export default function App() {
         <View> 
         <View style =  {styles.nameField}>
           <Text style  ={{fontWeight: "800", textTransform: "uppercase", alignSelf: "flex-start", padding: 10}}>Your name</Text>
-          <TextInput style={styles.nameFill} placeholder = "please enter your name" value = {slots} onChangeText = {handleNameChange} placeholderTextColor={'#6d6a6a07'}/>
+          <TextInput style={styles.nameFill} placeholder = "please enter your name" value = {name} onChangeText = {handleNameChange} placeholderTextColor={'#6d6a6a07'}/>
         </View>
+
+        <Text style ={{justifyContent: "space-around", margin: 15}}> Booking for: {name}</Text>
       </View>
 
-      <TouchableOpacity>
+      <TouchableOpacity onPress={handleMessage}>
         <View style = {styles.ButtonDesign} >
           <Text style = {{padding: 10, fontWeight: "500", fontSize: 22, color: "#fff", textTransform: "uppercase"}}>Book a session </Text>
         </View>
@@ -90,8 +95,8 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
-    height: '60%',
-    width: '90%',
+    height: '98%',
+    width: '80%',
   },
   heading:{fontSize: 20,
     fontWeight: 'bold',
@@ -159,49 +164,53 @@ const styles = StyleSheet.create({
     margin : 5
   },
   headerLine: {
-    padding: 2,
+    padding: 5,
     backgroundColor: '#F5F5F5',
     alignItems: 'center',
-    width: "auto"
+    width: "90%",
+    height: '99%'
   },
   bookingButton: {
     backgroundColor : "#FF6B00"
   },
   ButtonDesign: {
     backgroundColor: "rgba(58, 58, 57, 0.9)",
-    borderRadius: 40,
+    borderRadius: 15,
     height: "auto",
     padding: 7,
-    margin: 6,
+    margin: 45,
     
   },
   lableStyle: {
     flexDirection: "column",
     fontSize: 12,
     fontStyle: 'italic',
-    backgroundColor: "rgba(156, 156, 156, 0.79)",
+    backgroundColor: "rgba(165, 159, 159, 0.36)",
     padding: 10,
     width: "20%",
     height: "150%",
     borderRadius: 20,
+    borderWidth: 0.15,
+    borderColor: "rgba(165, 159, 159, 0.36)",
+    margin: 10
     
   },
     nameField: {
         flexDirection: "column", 
-        margin: 15, 
+        margin: 32, 
         height: "66%", 
         width: "96%" , 
-        backgroundColor: "#7b7e8586", 
+        backgroundColor: "#94959959", 
         alignItems: "center", 
         padding:" 5%", 
         justifyContent: "space-between", 
         borderRadius: 20, 
         borderColor: "#504e4e70",
-        borderWidth: 2
+        borderWidth: 0.25
     },
   nameFill:{
-    fontSize: 24,
-    fontWeight: "bold",
+    fontSize: 15,
+    fontWeight: '100',
     fontFamily: "Arial",
     borderWidth:0,
     padding:5, 
@@ -212,6 +221,8 @@ const styles = StyleSheet.create({
     height: '25%',
     borderWidth: 0.25,
     borderRadius: 3,
+    backgroundColor: "#837d7d3a",
+    borderColor: "rgba(129, 129, 122, 0.33)"
     
 
   },
