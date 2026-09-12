@@ -3,6 +3,16 @@ import { useState } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, Button, Image, TextInput } from 'react-native';
 import image from './assets/image.png';
 import AntDesign from '@expo/vector-icons/AntDesign'
+import { Ionicons } from '@expo/vector-icons';
+
+
+const trainerName = "Sipho Ndlovu"
+
+const speciality = "Strength and Conditioning";
+const yearsExperience = 7;
+const sessionPrice = 250;
+
+  const studentNumber = "ST10012345";
 
 export default function App() {
 
@@ -10,8 +20,9 @@ export default function App() {
 
    const[name, setName] = useState('');
    const [years, setYears] = useState('');
-   const[slots, setSlots] = useState('');
+   const[slots, setSlots] = useState(3);
    const[amount, setAmount] = useState('');
+   const [booked, setBooked] = useState(false);
 
   const handleStudentNumberChange = (text: string) => {
     setStudentNumber(text);
@@ -26,204 +37,205 @@ export default function App() {
   const handleMessage = () => {
 
   }
+ let slotsLeft = 4;
+  slotsLeft = 3;
+
   return (
+    <View style={styles.container}>
+        <View style={styles.tile}>
+          <Ionicons name="trophy-outline" size={18} color="#211C17" />
+          <Text style={styles.tileNumber}>{yearsExperience}</Text>
+          <Text style={styles.tileLabel}>YEARS</Text>
+        </View>
+        <View style={styles.tile}>
+          <Ionicons name="pricetag-outline" size={18} color="#211C17" />
+          <Text style={styles.tileNumber}>R{sessionPrice}</Text>
+          <Text style={styles.tileLabel}>PER SESSION</Text>
+        </View>
+        <View style={styles.tile}>
+          <Ionicons name="calendar-outline" size={18} color="#211C17" />
+          <Text style={styles.tileNumber}>{slots}</Text>
+          <Text style={styles.tileLabel}>SLOTS LEFT</Text>
+        </View>      
 
 
-    <View style = {styles.headerLine}>
-        
-        <Text style = {{alignSelf: 'flex-start', margin: 5, color: "#1A1A1A"}}> Ironline Fitness </Text>
 
-        <Text style = {styles.studentNumberLine}>
-          ST
-          <TextInput placeholder  = "00000000" value={studentNumber} onChangeText={handleStudentNumberChange}  />
-        </Text>
-     
-
-     <View style={styles.container}>
-        <View style= {styles.ImageCaption}>
-          <View style={styles.imageContainer}>
-           <Image source={image} style={styles.image} />
-         </View>        
-        
-         <Text style = {styles.nameText} > Sipho Ndlovu </Text>
-
-      </View>
-
-        <View  style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-around', margin: 20, }}>
-
-        <View style= {styles.lableStyle}>
-          <TextInput style = {styles.agentInformation} value={years} onChangeText={handleYearsChange} keyboardType = 'numeric' placeholder = "99" />
-          <Text>years experience </Text>
+                <View style={styles.bookingBox}>
+          <Text style={styles.bookingLabel}>YOUR NAME</Text>
+          <View style={styles.inputRow}>
+             <Ionicons name="person-outline" size={18} color="#A39A8E" />
+            <TextInput
+              style={styles.input}
+              placeholder="Type your name"
+              placeholderTextColor="#A39A8E"
+              onChangeText ={handleNameChange}
+            />
+          </View>
         </View>
 
-        <View style= {styles.lableStyle}>
-         <TextInput style = {styles.agentInformation} value={amount} onChangeText={(text) => setAmount(text) } keyboardType = 'numeric' placeholder = "R999"/>
-          <Text>price of commission </Text>
-          
-        </View>
+        <Button
+            title="Test button"
+                       onPress={() => {
+              console.log("Booking for: " + name);
+              setSlots(slots - 1);
+              setBooked(true);
+            }}
+          />
 
-        <View style= {styles.lableStyle}>
-         <TextInput style = {styles.agentInformation} value={slots} onChangeText={(text) => setSlots(text) } keyboardType = 'numeric' placeholder = "0" />          
-          <Text>slots available </Text>
-        </View>
-
-        </View>
-        <View> 
-        <View style =  {styles.nameField}>
-          <Text style  ={{fontWeight: "800", textTransform: "uppercase", alignSelf: "flex-start", padding: 10}}>Your name</Text>
-          <TextInput style={styles.nameFill} placeholder = "please enter your name" value = {name} onChangeText = {handleNameChange} placeholderTextColor={'#6d6a6a07'}/>
-        </View>
-
-        <Text style ={{justifyContent: "space-around", margin: 15}}> Booking for: {name}</Text>
-      </View>
-
-      <TouchableOpacity onPress={handleMessage}>
-        <View style = {styles.ButtonDesign} >
-          <Text style = {{padding: 10, fontWeight: "500", fontSize: 22, color: "#fff", textTransform: "uppercase"}}>Book a session </Text>
-        </View>
-      </TouchableOpacity>
-
-      </View>
-      <StatusBar style="auto" />
+        <Text style={styles.bookingFor}>Booking for: {name}</Text>
+        <StatusBar style="auto" />
     </View>
   );
 }
-
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
+container: {
+  flex: 1,
+  backgroundColor: '#101010',
+  paddingTop: 90,
+  paddingHorizontal: 20,
+},
+
+name: {
+  fontSize: 30,
+  fontWeight: 'bold',
+  color: '#101010',
+},
+speciality: {
+  fontSize: 16,
+  color: '#5A5A55',
+  paddingBottom: 14,
+},
+
+detail: {
+  fontSize: 18,
+  color: '#101010',
+  paddingTop: 6,
+},
+
+price: {
+  fontSize: 26,
+  fontWeight: 'bold',
+  color: '#101010',
+  paddingTop: 16,
+},
+
+brand: {
+  fontSize: 13,
+  letterSpacing: 2,
+  color: '#8A8A85',
+},
+
+  stamp: {
+    fontSize: 11,
+    letterSpacing: 1,
+    color: '#8A8A85',
+    paddingBottom: 14,
+  },
+
+    photo: {
+    width: 96,
+    height: 96,
+    borderRadius: 48,
+    borderWidth: 3,
+    borderColor: '#D9480F',
+  },
+
+ cta: {
+    flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-    height: '98%',
-    width: '80%',
+    gap: 8,
+    backgroundColor: '#211C17',
+    paddingVertical: 18,
+    borderRadius: 999,
+    marginTop: 22,
   },
-  heading:{fontSize: 20,
+  ctaText: {
+    fontSize: 14,
     fontWeight: 'bold',
-    fontFamily: 'Arial',
-    color: 'blue',
+    letterSpacing: 1.5,
+    color: '#FFFFFF',
   },
-  imageContainer: {
-    width: 190,
-    height: 190,
-    borderRadius: 100,
-    overflow: 'hidden',
-    marginBottom: 20,
-    borderWidth: 0,
-    borderColor: 'black',
-    alignSelf: "flex-end"
+  bookingBox: {
+    backgroundColor: '#F5F1EA',
+    padding: 16,
+    borderRadius: 24,
+    marginTop: 22,
+    borderWidth: 1,
+    borderColor: '#E2DAD0',
   },
-  image: {
-    width: '100%',
-    height: '100%',
-    resizeMode: 'cover',
-  },
-  button: {
-    backgroundColor: 'blue',
-    padding: 10,
-    borderRadius: 5,
-    marginTop: 20,
-  },
-  texInputs: {
-    height: 40,
-    borderColor: 'rgba(100, 100, 70, 0.84)',
-    borderWidth: 3,
+  bookingLabel: {
+    fontSize: 10,
+    fontWeight: 'bold',
+    letterSpacing: 1.2,
+    color: '#A39A8E',
     marginBottom: 10,
-    paddingHorizontal: 10,  
-    backgroundColor: '#e3e4d36b',
-    
   },
-  agentInformation:{
-    fontSize: 24,
-    fontWeight: "bold",
-    fontFamily: "Arial",
-    borderWidth:0,
-    padding:5, 
-    margin: 5,
-    fontStyle: 'italic',
-    color: '#000000',
-    width : '50%',
-    height: '25%',
-    borderRadius: 44
-  },
-  ImageCaption: {
+  inputRow: {
     flexDirection: 'row',
-
-  },
-  nameText:{
-    fontSize: 24,
-    fontWeight: 'bold',
-    color: '#110485',
-    width: "auto"
-    
-  },
-
-  studentNumberLine: {
-    backgroundColor: '#F5F5F5',
-    alignSelf: 'flex-end',
-    margin : 5
-  },
-  headerLine: {
-    padding: 5,
-    backgroundColor: '#F5F5F5',
     alignItems: 'center',
-    width: "90%",
-    height: '99%'
+    gap: 10,
+    backgroundColor: '#FFFFFF',
+    borderRadius: 14,
+    paddingHorizontal: 18,
+    borderWidth: 1,
+    borderColor: '#E2DAD0',
   },
-  bookingButton: {
-    backgroundColor : "#FF6B00"
-  },
-  ButtonDesign: {
-    backgroundColor: "rgba(58, 58, 57, 0.9)",
-    borderRadius: 15,
-    height: "auto",
-    padding: 7,
-    margin: 45,
-    
-  },
-  lableStyle: {
-    flexDirection: "column",
-    fontSize: 12,
-    fontStyle: 'italic',
-    backgroundColor: "rgba(165, 159, 159, 0.36)",
-    padding: 10,
-    width: "20%",
-    height: "150%",
-    borderRadius: 20,
-    borderWidth: 0.15,
-    borderColor: "rgba(165, 159, 159, 0.36)",
-    margin: 10
-    
-  },
-    nameField: {
-        flexDirection: "column", 
-        margin: 32, 
-        height: "66%", 
-        width: "96%" , 
-        backgroundColor: "#94959959", 
-        alignItems: "center", 
-        padding:" 5%", 
-        justifyContent: "space-between", 
-        borderRadius: 20, 
-        borderColor: "#504e4e70",
-        borderWidth: 0.25
-    },
-  nameFill:{
+  input: {
+    flex: 1,
+    paddingVertical: 14,
     fontSize: 15,
-    fontWeight: '100',
-    fontFamily: "Arial",
-    borderWidth:0,
-    padding:5, 
-    margin: 10,
-    fontStyle: 'italic',
-    color: '#000000',
-    width : '50%',
-    height: '25%',
-    borderWidth: 0.25,
-    borderRadius: 3,
-    backgroundColor: "#837d7d3a",
-    borderColor: "rgba(129, 129, 122, 0.33)"
-    
-
+    color: '#FFFFFF',
   },
+
+  bookingFor: {
+    fontSize: 13,
+    color: '#6F665C',
+    marginTop: 12,
+  },
+
+  tile: {
+    backgroundColor: '#101010',
+    padding: 14,
+    borderRadius: 14,
+    marginTop: 10,
+  },
+  tileNumber: {
+    fontSize: 26,
+    fontWeight: 'bold',
+    color: '#E6FF3D',
+  },
+  tileLabel: {
+    fontSize: 10,
+    letterSpacing: 1,
+    color: '#8A8A85',
+    marginTop: 2,
+  },
+
+  card: {
+    shadowColor: '#3B2F22',
+    shadowOffset: { width: 0, height: 10 },
+    shadowOpacity: 0.10,
+    shadowRadius: 24,
+    elevation: 8,
+  },
+
+    chip: {
+    alignSelf: 'flex-start',
+    marginTop: 8,
+    backgroundColor: '#211C17',
+    color: '#211C17',
+    fontSize: 11,
+    fontWeight: 'bold',
+    paddingHorizontal: 10,
+    paddingVertical: 5,
+    borderRadius: 8,
+    overflow: 'hidden',
+  },
+
+  ctaPressed: {
+    backgroundColor: '#4A4034',
+  },
+
+
 });
